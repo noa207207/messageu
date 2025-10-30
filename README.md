@@ -12,7 +12,7 @@ A secure client-server messaging application with end-to-end encryption. The sys
 - **Client Discovery**: List all registered clients
 - **Message Queue**: Retrieve waiting messages from server
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### Server Requirements
 - **Python 3.7+**
@@ -32,13 +32,6 @@ make
 ```
 
 The executable will be created at `client/build/messageu`
-
-### Clean Build Files
-
-```bash
-cd client
-make clean
-```
 
 ## Running
 
@@ -82,7 +75,7 @@ cd client
 ./build/messageu
 ```
 
-## 📡 Protocol
+## Protocol
 
 ### Request Codes
 - `600` - Register new client
@@ -105,7 +98,7 @@ cd client
 - `3` - Text message
 - `4` - File
 
-## 🔐 Security Features
+## Security Features
 
 ### Encryption
 - **RSA (160-byte keys)**: Asymmetric encryption for key exchange
@@ -148,7 +141,7 @@ messageu/
     └── defensive.db      # SQLite database (generated)
 ```
 
-## lient Menu Options
+## Client Menu Options
 
 **110** - Register with server  
 **120** - Get list of registered clients  

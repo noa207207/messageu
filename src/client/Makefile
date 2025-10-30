@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -O2 -Iinclude
 LDFLAGS = -lcryptopp
 
 # Directories
-SRC_DIR = src
+SRC_DIR = .
 BUILD_DIR = build
 INCLUDE_DIR = include
 

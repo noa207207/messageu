@@ -27,18 +27,18 @@ A secure client-server messaging application with end-to-end encryption. The sys
 ### Build the Client
 
 ```bash
-cd client
+cd src/client
 make
 ```
 
-The executable will be created at `client/build/messageu`
+The executable will be created at `src/client/build/messageu`
 
 ## Running
 
 ### 1. Start the Server
 
 ```bash
-cd server
+cd src/server
 python3 server.py
 ```
 
@@ -71,7 +71,7 @@ Format: `<server_ip>:<port>`
 ### 3. Run the Client
 
 ```bash
-cd client
+cd src/client
 ./build/messageu
 ```
 
@@ -115,30 +115,26 @@ cd client
 
 ```
 messageu/
-├── client/
-│   ├── src/              # C++ source files
-│   │   ├── main.cc
-│   │   ├── client.cc
-│   │   ├── protocol.cc
-│   │   ├── message.cc
-│   │   └── crypto wrappers (.cpp)
-│   ├── include/          # Header files
-│   │   ├── client.h
-│   │   ├── protocol.h
-│   │   ├── message.h
-│   │   └── crypto/       # Crypto wrapper headers
-│   ├── build/            # Build output (generated)
-│   ├── Makefile
-│   └── server.info       # Server connection info
-│
-└── server/
-    ├── server.py         # Main server application
-    ├── database.py       # SQLite database handler
-    ├── message_handler.py # Request/response handler
-    ├── protocol.py       # Protocol definitions
-    ├── requirements.txt
-    ├── myport.info       # Server port configuration
-    └── defensive.db      # SQLite database (generated)
+└── src/
+    ├── client/
+    │   ├── *.cc/*.cpp       # C++ source files (main.cc, client.cc, etc.)
+    │   ├── include/         # Header files
+    │   │   ├── client.h
+    │   │   ├── protocol.h
+    │   │   ├── message.h
+    │   │   └── crypto/      # Crypto wrapper headers
+    │   ├── build/           # Build output (generated)
+    │   ├── Makefile
+    │   └── server.info      # Server connection info
+    │
+    └── server/
+        ├── server.py        # Main server application
+        ├── database.py      # SQLite database handler
+        ├── message_handler.py # Request/response handler
+        ├── protocol.py      # Protocol definitions
+        ├── requirements.txt
+        ├── myport.info      # Server port configuration
+        └── defensive.db     # SQLite database (generated)
 ```
 
 ## Client Menu Options

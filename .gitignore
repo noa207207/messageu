@@ -1,17 +1,17 @@
 # Build artifacts
-client/build/
-client/messageu
-client/*.o
-client/crypto/*.o
+src/client/build/
+src/client/messageu
+src/client/*.o
+src/client/crypto/*.o
 
 # Generated runtime files
-client/my.info
-client/server.info
-server/defensive.db
-server/myport.info
+src/client/my.info
+src/client/server.info
+src/server/defensive.db
+src/server/myport.info
 
 # Python cache
-server/__pycache__/
+src/server/__pycache__/
 *.pyc
 
 # Editor/IDE files

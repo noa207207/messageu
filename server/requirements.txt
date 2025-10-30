@@ -1,0 +1,13 @@
+# MessageU Server Requirements
+# No external dependencies required - uses Python standard library only
+
+# Python 3.7+ required
+# Standard library modules used:
+# - socket
+# - threading
+# - sqlite3
+# - logging
+# - struct
+# - uuid
+# - datetime
+

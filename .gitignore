@@ -1,0 +1,30 @@
+# Build artifacts
+client/build/
+client/messageu
+client/*.o
+client/crypto/*.o
+
+# Generated runtime files
+client/my.info
+client/server.info
+server/defensive.db
+server/myport.info
+
+# Python cache
+server/__pycache__/
+*.pyc
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+/tmp/
+*.tmp

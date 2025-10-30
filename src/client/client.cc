@@ -133,6 +133,7 @@ bool MessageUClient::sendRequest(const std::vector<uint8_t>& request) {
 
 std::vector<uint8_t> MessageUClient::receiveResponse() {
     std::vector<uint8_t> header(7);
+    // MSG_WAITALL blocks until all 7 bytes arrive or connection closes
     ssize_t received = recv(sock, header.data(), 7, MSG_WAITALL);
     if (received != 7) {
         throw std::runtime_error("Failed to receive response header");
@@ -259,6 +260,7 @@ void MessageUClient::requestWaitingMessages() {
     auto list_resp = receiveResponse();
     auto clients = MessageUtils::parseClientList(list_resp);
     
+    // Build lookup table to display sender names instead of hex IDs
     std::map<std::string, std::string> id_to_name;
     for (const auto& client : clients) {
         std::string id_str = MessageUtils::clientIdToString(client.id);
@@ -295,6 +297,7 @@ void MessageUClient::requestWaitingMessages() {
                     
                     try {
                         std::cout << "Decrypting symmetric key..." << std::endl;
+                        // RSA decrypt returns the AES key that was encrypted with our public key
                         auto decrypted_key_str = rsa_private->decrypt(msg.content);
                         std::vector<uint8_t> decrypted_key(decrypted_key_str.begin(), decrypted_key_str.end());
                         
@@ -336,6 +339,7 @@ void MessageUClient::requestWaitingMessages() {
                             AESWrapper aes(sym_key);
                             auto decrypted_file = aes.decrypt(msg.content);
                             
+                            // Cross-platform temp directory resolution (Windows/Unix)
                             const char* tmp_dir = std::getenv("TMP");
                             if (!tmp_dir) {
                                 tmp_dir = std::getenv("TEMP");
@@ -540,6 +544,7 @@ void MessageUClient::sendSymmetricKey() {
     auto target_public_key = MessageUtils::parsePublicKey(pubkey_resp, resp_id);
     std::cout << "Public key received (" << target_public_key.size() << " bytes)" << std::endl;
     
+    // Default constructor generates fresh AES-128 key automatically
     AESWrapper aes;
     auto symmetric_key = aes.getKey();
     std::cout << "Generated AES symmetric key (" << symmetric_key.size() << " bytes)" << std::endl;

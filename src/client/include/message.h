@@ -19,6 +19,7 @@ struct Message {
 class MessageUtils {
 public:
     static std::vector<ClientInfo> parseClientList(const std::vector<uint8_t>& payload);
+    // Also populates client_id output parameter with the key owner's ID
     static std::vector<uint8_t> parsePublicKey(const std::vector<uint8_t>& payload, uint8_t* client_id);
     static std::vector<Message> parseMessages(const std::vector<uint8_t>& payload);
     static std::string bytesToHex(const uint8_t* bytes, size_t length);

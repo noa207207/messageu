@@ -13,6 +13,7 @@ std::vector<uint8_t> Protocol::packRequestHeader(
     
     header[CLIENT_ID_SIZE] = VERSION;
     
+    // Little-endian encoding for cross-platform compatibility
     header[CLIENT_ID_SIZE + 1] = code & 0xFF;
     header[CLIENT_ID_SIZE + 2] = (code >> 8) & 0xFF;
     
@@ -46,6 +47,7 @@ std::vector<uint8_t> Protocol::packRegisterRequest(
     
     auto request = packRequestHeader(empty_id, REQ_REGISTER, payload_size);
     
+    // Fixed-size username field (null-terminated, padded with zeros)
     std::vector<uint8_t> username_bytes(USERNAME_MAX_SIZE, 0);
     size_t len = std::min(username.length(), size_t(USERNAME_MAX_SIZE - 1));
     std::memcpy(username_bytes.data(), username.c_str(), len);

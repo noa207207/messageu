@@ -57,6 +57,7 @@ struct ResponseHeader {
 
 class Protocol {
 public:
+    // Constructs 23-byte header with little-endian encoding for wire transmission
     static std::vector<uint8_t> packRequestHeader(
         const uint8_t* client_id,
         uint16_t code,
@@ -65,6 +66,7 @@ public:
     
     static ResponseHeader unpackResponseHeader(const std::vector<uint8_t>& data);
     
+    // Registration uses null client_id (not yet assigned by server)
     static std::vector<uint8_t> packRegisterRequest(
         const std::string& username,
         const std::vector<uint8_t>& public_key

@@ -7,7 +7,8 @@
 class AESWrapper {
 private:
     std::vector<uint8_t> key;
-    static constexpr uint8_t IV[16] = {0};  // IV = 0 (all zeros)
+    // Using zero IV since we're in CBC mode - not ideal for production but matches protocol spec
+    static constexpr uint8_t IV[16] = {0};
     
 public:
     static constexpr size_t KEY_SIZE = 16;  // 128 bits

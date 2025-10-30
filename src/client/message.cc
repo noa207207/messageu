@@ -42,6 +42,7 @@ std::vector<uint8_t> MessageUtils::parsePublicKey(const std::vector<uint8_t>& pa
 std::vector<Message> MessageUtils::parseMessages(const std::vector<uint8_t>& payload) {
     std::vector<Message> messages;
     
+    // Parse variable-length message queue by tracking byte offset
     size_t offset = 0;
     while (offset < payload.size()) {
         if (offset + CLIENT_ID_SIZE + 4 + 1 + 4 > payload.size()) {

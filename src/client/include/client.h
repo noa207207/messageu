@@ -23,14 +23,18 @@ private:
     RSAPrivateWrapper* rsa_private;
     bool registered;
     
+    // Maps client_id (as hex string) to their AES key for encrypted communication
     std::map<std::string, std::vector<uint8_t>> symmetric_keys;
     
     void loadServerInfo();
+    // Returns false if no prior session exists (first-time user)
     bool loadMyInfo();
     void saveMyInfo();
     bool connect();
     void disconnect();
+    // Handles partial writes in case socket buffer is full
     bool sendRequest(const std::vector<uint8_t>& request);
+    // Blocks until entire response (header + payload) is received
     std::vector<uint8_t> receiveResponse();
     
     bool hasSymmetricKey(const uint8_t* target_id);
@@ -42,7 +46,9 @@ private:
     void requestPublicKey();
     void requestWaitingMessages();
     void sendTextMessage();
+    // Asks recipient to send us their AES key (encrypted with our RSA public key)
     void requestSymmetricKey();
+    // Encrypts our AES key with recipient's RSA public key and sends it
     void sendSymmetricKey();
     void sendFile();
     void showMenu();
